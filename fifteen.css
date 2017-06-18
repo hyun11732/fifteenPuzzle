@@ -1,0 +1,40 @@
+# /* 
+   Hyun Suk Lee
+   05/02/17
+   CSE154
+   Instructor :  Chadi Moussi
+   assignment #4
+
+    This css file will is linked to fifteen.html file and modify a style and format
+    of the html file. */
+
+body {
+    font-family: cursive;
+    font-size: 14pt;
+    text-align: center;
+}
+
+#puzzlearea {
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+
+.box {
+    background-image: url("https://s.aolcdn.com/hss/storage/midas/b386937631a1f03665c1d57289070898/203417456/simpsons.jpg");
+    background-size: 400px 400px;
+    border: 5px solid black;
+    font-size: 40pt;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+}
+
+.moveAble:hover {
+    color: red;
+    border-color: red;
+    cursor: pointer;
+}
+
+
