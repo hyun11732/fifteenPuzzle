@@ -1,4 +1,4 @@
-# // Hyun Suk Lee
+// Hyun Suk Lee
 // 05/02/2017
 // CSE 154
 // Instructor : Chadi Moussi
@@ -6,7 +6,8 @@
 // This javascript is connected to fifteen.html and manipulates its page.
 // This script creates "fifteen puzzle" that most of people played when they
 // are young. This script will divide the image into 15 pieaces and a user
-// can shuffle it to solve puzzle.
+// can shuffle it to solve puzzle. When it is solved, there will be an alert
+// message.
 (function() {
     
     "use strict";
@@ -15,6 +16,7 @@
     var blankPositionX;
     var blankPositionY;
     var neighbor;
+    var shuffled;
     
 
     // This function is called when the page is just loaded. It splits picture into
@@ -24,6 +26,9 @@
         $("#shufflebutton").click(shuffle);
         split();
         moveAble();
+        if(win()) {
+            alert("Solved!");
+        }
     });
     
     // This function is called when a user clicks a box which is moveable(neighbor box of
@@ -52,6 +57,10 @@
         object.remove();
         renew();
         moveAble();
+        if(win()) {
+           alert("Solved! Congrats! It will move to other page.");
+            window.location = "http://www.imdb.com/title/tt0096697/";
+        }
     }
     
     // This function splits an image to fifteen pieaces to make a puzzle.
@@ -66,9 +75,9 @@
                 top += 100;
             }
         }
-    blankid = 16;
-    blankPositionX = 300;
-    blankPositionY = 300;
+        blankid = 16;
+        blankPositionX = 300;
+        blankPositionY = 300;
     }
     
     // This function takes "boxLeft", "boxTop", "imgLeft", "imgTop", "id", "text"
@@ -142,5 +151,24 @@
             var movingBox = $("#" + neighbor[random] + "box");
             move(neighbor[random], movingBox.html());
         }
+        shuffled = true;
+    }
+    
+    // This function returns true when it is shuffled and sovled. If not, 
+    // it will return false.
+    function win() {
+        var box = $(".box");
+        if(shuffled) {
+            var test = 0;
+            for(var i = 0; i < 16; i++) {
+                if(parseInt($(box[i]).attr("id")) == $(box[i]).text()) {
+                    test++;
+                }
+            }
+            if(test == 15) {
+                return true;
+            } 
+        }
+        return false;
     }
 })();
